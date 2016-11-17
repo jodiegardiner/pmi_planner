@@ -8,10 +8,10 @@ from django.db import models
 
 class Client(models.Model):
     name = models.CharField(max_length=50)
-    address = models.CharField(max_length=200)
-    email = models.EmailField()
-    phone = models.CharField(max_length=15)
-    notes = models.TextField()
+    address = models.CharField(max_length=200, blank=True)
+    email = models.EmailField(blank=True)
+    phone = models.CharField(max_length=15, blank=True)
+    notes = models.TextField(blank=True)
 
     def __str__(self):
         return self.name
@@ -30,7 +30,7 @@ class PregnancyEvent(models.Model):
     pregnancy = models.ForeignKey(Pregnancy, related_name="pregnancy_events")
     title = models.CharField(max_length=50)
     event_date = models.DateTimeField()
-    notes = models.TextField()
+    notes = models.TextField(blank=True)
 
     def __str__(self):
         return self.title
