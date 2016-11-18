@@ -1,10 +1,8 @@
 from django.contrib.auth.models import User
 
+
 class EmailAuth(object):
     def authenticate(self, username=None, password=None):
-        """
-       Get an instance of User using the supplied email and check its password
-       """
         try:
             user = User.objects.get(email=username)
             if user.check_password(password):
@@ -14,9 +12,6 @@ class EmailAuth(object):
             return None
 
     def get_user(self, user_id):
-        """
-       Used by the django authentication system to retrieve an instance of User
-       """
         try:
             user = User.objects.get(pk=user_id)
             if user.is_active:

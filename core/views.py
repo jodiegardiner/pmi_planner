@@ -8,6 +8,12 @@ def get_index(request):
 
 
 def create_client(request):
-    form = ClientCreationForm()
+    if request.method == 'POST':
+        form = ClientCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = ClientCreationForm()
+
     args = {'form': form}
     return render(request, 'create.html', args)
