@@ -65,12 +65,10 @@ def main():
         'location': '800 Howard St., San Francisco, CA 94103',
         'description': 'The baby is due on this date for the named client.',
         'start': {
-            'dateTime': '2018-05-28T17:00:00-07:00',
-            'timeZone': 'America/Los_Angeles',
+            'date': '2017-05-28',
         },
         'end': {
-            'dateTime': '2018-05-28T17:00:00-07:00',
-            'timeZone': 'America/Los_Angeles',
+            'date': '2017-05-28',
         },
 
         'reminders': {
@@ -81,6 +79,7 @@ def main():
             ],
         },
         'visibility': 'private',
+        'anyoneCanAddSelf': False,
     }
 
     event = service.events().insert(calendarId='primary', body=event).execute()

@@ -9,7 +9,7 @@
                 {{ form | as_bootstrap }}
                 <label for="due_date">Due date</label>
                 <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" id="due_date" required />
+                    <input type='text' class="form-control" id="due_date" name="due_date" required />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -17,7 +17,7 @@
                 <script type="text/javascript">
                     $(function () {
                         $('#datetimepicker1').datetimepicker({
-                            format: 'ddd, DD MMM YYYY'
+                            format: 'YYYY-MM-DD'
                         });
                     });
                 </script>

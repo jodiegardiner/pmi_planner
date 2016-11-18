@@ -1,0 +1,22 @@
+ event = {
+        'summary': 'Mary Collins due date',
+        'location': '800 Howard St., San Francisco, CA 94103',
+        'description': 'The baby is due on this date for the named client.',
+        'start': {
+            'date': '2018-05-28',
+            'timeZone': 'America/Los_Angeles',
+        },
+        'end': {
+            'dateTime': '2018-05-28T17:00:00-07:00',
+            'timeZone': 'America/Los_Angeles',
+        },
+
+        'reminders': {
+            'useDefault': False,
+            'overrides': [
+                {'method': 'email', 'minutes': 24 * 60},
+                {'method': 'popup', 'minutes': 10},
+            ],
+        },
+        'visibility': 'private',
+    }
