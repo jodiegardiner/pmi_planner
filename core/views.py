@@ -34,9 +34,14 @@ def create_client(request):
             preg.week_care_commences = request.POST.get('purchased_plan')
             preg.save()
 
-            # e = {'name': preg.client.name,
-            #      }
-            # create_calendar_entry(e)
+            e = {'name': client.name,
+                 'address': client.address,
+                 'notes' : client.notes,
+                 'email' : client.email,
+                 'phone': client.phone,
+                 'due_date': preg.due_date,
+                 }
+            create_calendar_entry(e)
 
             return redirect(client_details, client.pk)
     else:

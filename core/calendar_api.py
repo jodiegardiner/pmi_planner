@@ -54,14 +54,14 @@ def create_calendar_entry(entry):
         http = credentials.authorize(httplib2.Http())
         service = discovery.build('calendar', 'v3', http=http)
         event = {
-            'summary': "'" + entry.name + "'",
-            'location': '800 Howard St., San Francisco, CA 94103',
-            'description': 'The baby is due on this date for the named client.',
+            'summary': entry['name'],
+            'location': entry['address'],
+            'description': entry['notes'],
             'start': {
-                'date': '2017-01-28',
+                'date': entry['due_date'],
             },
             'end': {
-                'date': '2017-01-28',
+                'date': entry['due_date'],
             },
 
             'reminders': {
@@ -76,37 +76,6 @@ def create_calendar_entry(entry):
         }
         event = service.events().insert(calendarId='primary', body=event).execute()
         print('Event created: %s' % (event.get('htmlLink')))
-# def main():
-#
-#     credentials = get_credentials()
-#     http = credentials.authorize(httplib2.Http())
-#     service = discovery.build('calendar', 'v3', http=http)
-#
-#     event = {
-#         'summary': 'Mary Collins due date',
-#         'location': '800 Howard St., San Francisco, CA 94103',
-#         'description': 'The baby is due on this date for the named client.',
-#         'start': {
-#             'date': '2018-05-28',
-#             'timeZone': 'America/Los_Angeles',
-#         },
-#         'end': {
-#             'dateTime': '2018-05-28T17:00:00-07:00',
-#             'timeZone': 'America/Los_Angeles',
-#         },
-#
-#         'reminders': {
-#             'useDefault': False,
-#             'overrides': [
-#                 {'method': 'email', 'minutes': 24 * 60},
-#                 {'method': 'popup', 'minutes': 10},
-#             ],
-#         },
-#         'visibility': 'private',
-#     }
-#
-#     event = service.events().insert(calendarId='primary', body=event).execute()
-#     print('Event created: %s' % (event.get('htmlLink')))
 
     # now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
     # print('Getting the upcoming 10 events')

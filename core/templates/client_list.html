@@ -1,22 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div>
-        <a href="{% url 'create' %}"><button class="btn btn-primary">Create new client</button></a>
+    <div class="row">
+    <div class="col-md-4 col-sm-4">
+        <a href="{% url 'create' %}"><button class="btn btn-lg btn-primary btn-pmi">Add a Client</button></a>
     </div>
+    </div>
+    <div class="row">
 
     {% for client in clients %}
 
 
-        <div class="col-md-4 col-sm-4 mb">
+        <div class="col-md-4 col-sm-4">
             <h3>{{ client.name }}</h3>
             <hr>
             <p>{{ client.address }}</p>
             <p>{{ client.notes|truncatewords:30 }}</p>
             <p><button class="btn btn-default" onclick="location.href={{ client.id }}">View</button></p>
-            {#                        <p>{{ post.published_date }} | <strong>Views</strong> {{ post.views }} | <strong>Tag</strong> {{ post.tag }}</p>#}
         </div>
 
 
     {% endfor %}
+    </div>
 {% endblock content %}

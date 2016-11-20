@@ -17,3 +17,8 @@
 .black-bg {
   background-color: #604999;
 }
+
+.main-window {
+  padding-left: 15px;
+  padding-right: 15px;
+}
