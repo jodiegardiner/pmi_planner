@@ -45,7 +45,7 @@ def create_client(request):
     args = {'form': form}
     return render(request, 'create.html', args)
 
-
+@login_required(login_url='/login/')
 def client_list(request):
     clients = Client.objects.filter()
     return render(request, "client_list.html", {'clients': clients})

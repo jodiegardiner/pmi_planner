@@ -3,9 +3,17 @@
 
 
 .btn-pmi {
+  background-color: #8BCDCB;
+}
+
+.btn-pmi:hover {
   background-color: #604999;
 }
 
 .base-wrapper {
   padding-left:15px;
+}
+
+.black-bg {
+  background-color: #604999;
 }
