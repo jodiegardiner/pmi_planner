@@ -2,6 +2,8 @@ from django import forms
 import datetime
 from django.core.exceptions import ValidationError
 from .models import Client
+from datetime import date
+from django.forms import widgets
 
 
 class ClientCreationForm(forms.ModelForm):
@@ -15,12 +17,13 @@ class ClientCreationForm(forms.ModelForm):
     # client_phone = forms.CharField(label="Phone", max_length=15, required=False)
     # notes = forms.CharField(widget=forms.Textarea(attrs={'rows': 4}), required=False)
 
-    # due_date = forms.DateField(initial=(datetime.date.today() + datetime.timedelta(days=240)))
+    due_date = forms.DateField(widget=forms.widgets.DateInput(attrs={'class': "form-control date_picker", 'id': "due_date", 'name': "due_date",}, format="YYYY-MM-DD"))
 
 
     class Meta:
         model = Client
-        fields = ['name', 'address', 'email', 'phone', 'notes', 'purchased_plan']
+        fields = ['name', 'address', 'email', 'phone', 'notes', 'purchased_plan', 'due_date']
+        widgets = {'due_date': forms.DateInput(attrs= {'class': 'date_picker'}, format="YYYY-MM-DD")}
 
     def save(self, commit=True):
         instance = super(ClientCreationForm, self).save(commit=False)

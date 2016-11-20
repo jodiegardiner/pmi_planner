@@ -19,7 +19,7 @@ import datetime
 
 
 def get_index(request):
-    return render(request, 'base.html')
+    return render(request, 'index.html')
 
 @login_required(login_url='/login/')
 def create_client(request):
@@ -34,9 +34,9 @@ def create_client(request):
             preg.week_care_commences = request.POST.get('purchased_plan')
             preg.save()
 
-            e = {'name': preg.client.name,
-                 }
-            create_calendar_entry(e)
+            # e = {'name': preg.client.name,
+            #      }
+            # create_calendar_entry(e)
 
             return redirect(client_details, client.pk)
     else:

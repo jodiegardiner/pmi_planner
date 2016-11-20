@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div>
+<h1>Welcome to PMI Planner</h1>
+    <hr>
+<p>Please login or register to get the most out of this app</p>
+</div>
+    <div class="showback col-md-4 col-sm-4">
+      					<h4><i class="fa fa-angle-right"></i> Choose:</h4>
+						 <a href="{% url 'login' %}"><button type="button" class="btn btn-primary btn-lg btn-block btn-pmi">LOGIN</button></a>
+						 <a href="{% url 'register' %}"><button type="button" class="btn btn-default btn-lg btn-block">REGISTER</button></a>
+      				</div>
+{% endblock content %}

@@ -3,57 +3,308 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+
     <meta name="google-signin-client_id" content="18079445520-8mch9r79c4pqloc27q644ht2um37a7mh.apps.googleusercontent.com">
     <link rel="icon" href="../../favicon.ico">
 
     <title>PMI Planner</title>
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static "/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" %} "/>
-    <link href="{% static "css/signin.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+    <link rel="stylesheet" href="{% static "css/jquery-ui.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/jquery-ui.structure.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/jquery-ui.theme.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/to-do.css" %}">
+    <link rel="stylesheet" href="{% static "css/font-awesome.css" %}">
+    <link rel="stylesheet" href="{% static "css/table-responsive.css" %}">
+    <link rel="stylesheet" href="{% static "css/zabuto_calendar.css" %}">
+    <link rel="stylesheet" href="{% static "css/jquery.fancybox.css" %}">
+    <link rel="stylesheet" href="{% static "css/jquery.easy-pie-chart.css" %}">
+    <link rel="stylesheet" href="{% static "css/bootstrap-fullcalendar.css" %}">
+    <link rel="stylesheet" href="{% static "css/jquery.gritter.css" %}">
+    <link rel="stylesheet" href="{% static "css/jquery.gritter0.css" %}">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="{% static "/bower_components/moment/min/moment.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js" %}"></script>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static "css/style-responsive.css" %}">
+    <link rel="stylesheet" href="{% static "css/custom.css" %}">
+
+    <script type="text/javascript" src="{% static "js/Chart.js" %}"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 
 
 </head>
 
 <body>
+<section id="container" >
+    <!-- **********************************************************************************************************************************************************
+    TOP BAR CONTENT & NOTIFICATIONS
+    *********************************************************************************************************************************************************** -->
+    <!--header start-->
+    <header class="header black-bg">
+        <div class="sidebar-toggle-box">
+            <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+        </div>
+        <!--logo start-->
+        <a href="/" class="logo"><b>PMI Planner</b></a>
+        <!--logo end-->
+        <div class="nav notify-row" id="top_menu">
+            <!--  notification start -->
+            <ul class="nav top-menu">
+                <!-- settings start -->
 
-<div class="container">
-    <div class="masthead">
-        <ul class="nav nav-pills pull-right">
-            <li><a href="/">Home</a></li>
-            {% if user.is_authenticated %}
-                <li><a href="{% url 'clients' %}">Client list</a></li>
-                <li><a href="{% url 'profile' %}">Profile</a></li>
-                <li><a href="{% url 'logout' %}">Log Out</a></li>
+            </ul>
+            <!--  notification end -->
+        </div>
+        <div class="top-menu">
+            <ul class="nav pull-right top-menu">
+                {% if user.is_authenticated %}
+                    <li><a class="logout" href="{% url 'clients' %}">Client list</a></li>
+                    <li><a class="logout" href="{% url 'profile' %}">Profile</a></li>
+                    <li><a class="logout" href="{% url 'logout' %}">Log Out</a></li>
+                {%  else %}
+                    <li><a class="logout" href="{% url 'register' %}">Register</a></li>
+                    <li><a class="logout" href="{% url 'login' %}">Log In</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </header>
 
-            {%  else %}
-                <li><a href="{% url 'register' %}">Register</a></li>
-                <li><a href="{% url 'login' %}">Log In</a></li>
-            {% endif %}
-        </ul>
-    </div>
-    <h1><span>PregnaPlan</span></h1>
-    <hr>
-    {#     <div class="g-signin2" data-onsuccess="onSignIn"></div>#}
+    <!-- **********************************************************************************************************************************************************
+         MAIN SIDEBAR MENU
+         *********************************************************************************************************************************************************** -->
+    <!--sidebar start-->
+    <aside>
+        <div id="sidebar"  class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu" id="nav-accordion">
+                <img src="{% static "img/logo250.png" %}" alt="" class="img center-block" width="120">
+                {% if request.user.is_authenticated %} <p class="centered">signed in as</p>
+                    <h5 class="centered">{{ request.user.username }}</h5>
+                {% else %}
+                    <p class="centered"><a class="logout" href="{% url 'login' %}">Log In</a></p>{% endif %}
 
 
-    <div>
-        {% block content %}
-        {% endblock %}
-    </div>
-</div> <!-- /container -->
+                <li class="mt">
+                    <a class="active" href="/">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="{% url 'clients' %}" >
+                        <i class="fa fa-th"></i>
+                        <span>Client List</span>
+                    </a>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="{% url 'create' %}" >
+                        <i class="fa fa-user"></i>
+                        <span>Add a Client</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="http://www.privatemidwives.com/midwives-log-in-page/" target="_blank" >
+                        <i class="fa fa-book"></i>
+                        <span>Documentation</span>
+                    </a>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="http://www.privatemidwives.com/roi-packages-and-prices/" target="_blank">
+                        <i class=" fa fa-info-circle"></i>
+                        <span>Packages</span>
+                    </a>
+{#                    <ul class="sub">#}
+{#                        <li><a  href="morris.html">Morris</a></li>#}
+{#                        <li><a  href="chartjs.html">Chartjs</a></li>#}
+{#                    </ul>#}
+                </li>
+
+            </ul>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
+    <!--sidebar end-->
+
+    <section id="main-content">
+        <section class="wrapper base-wrapper">
+
+            <div class="row">
+                <div class="col-lg-9 main-chart">
+                    <div class="row mt">
+
+                        {#*******************************#}
+                        {#    BLOCK CONTENT#}
+                        {#*******************************#}
+
+                        {% block content %}
+                        {% endblock %}
 
 
-<footer>
-    <div class="container">
-        <ul class="nav pull-right"><li>Jodie Gardiner</li></ul>
-    </div>
-</footer>
+                        {#End block content#}
+                    </div>
+                </div>
+                <!-- **********************************************************************************************************************************************************
+          RIGHT SIDEBAR CONTENT
+          *********************************************************************************************************************************************************** -->
+
+                <div class="col-lg-3 ds">
+                    <!--COMPLETED ACTIONS DONUTS CHART-->
+                    <h3>NOTIFICATIONS</h3>
+
+                    <!-- First Action -->
+                    <div class="desc">
+                        <div class="thumb">
+                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                        </div>
+                        <div class="details">
+                            <p><muted>2 Minutes Ago</muted><br/>
+                                <a href="#">James Brown</a> subscribed to your newsletter.<br/>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Second Action -->
+                    <div class="desc">
+                        <div class="thumb">
+                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                        </div>
+                        <div class="details">
+                            <p><muted>3 Hours Ago</muted><br/>
+                                <a href="#">Diana Kennedy</a> purchased a year subscription.<br/>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Third Action -->
+                    <div class="desc">
+                        <div class="thumb">
+                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                        </div>
+                        <div class="details">
+                            <p><muted>7 Hours Ago</muted><br/>
+                                <a href="#">Brandon Page</a> purchased a year subscription.<br/>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Fourth Action -->
+                    <div class="desc">
+                        <div class="thumb">
+                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                        </div>
+                        <div class="details">
+                            <p><muted>11 Hours Ago</muted><br/>
+                                <a href="#">Mark Twain</a> commented your post.<br/>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Fifth Action -->
+                    <div class="desc">
+                        <div class="thumb">
+                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                        </div>
+                        <div class="details">
+                            <p><muted>18 Hours Ago</muted><br/>
+                                <a href="#">Daniel Pratt</a> purchased a wallet in your store.<br/>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- USERS ONLINE SECTION -->
+                    <h3>TEAM MEMBERS</h3>
+                    <!-- First Member -->
+                    <div class="desc">
+                        <div class="thumb">
+                            <img class="img-circle" src="assets/img/ui-divya.jpg" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                            <p><a href="#">DIVYA MANIAN</a><br/>
+                                <muted>Available</muted>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Second Member -->
+                    <div class="desc">
+                        <div class="thumb">
+                            <img class="img-circle" src="assets/img/ui-sherman.jpg" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                            <p><a href="#">DJ SHERMAN</a><br/>
+                                <muted>I am Busy</muted>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Third Member -->
+                    <div class="desc">
+                        <div class="thumb">
+                            <img class="img-circle" src="assets/img/ui-danro.jpg" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                            <p><a href="#">DAN ROGERS</a><br/>
+                                <muted>Available</muted>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Fourth Member -->
+                    <div class="desc">
+                        <div class="thumb">
+                            <img class="img-circle" src="assets/img/ui-zac.jpg" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                            <p><a href="#">Zac Sniders</a><br/>
+                                <muted>Available</muted>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Fifth Member -->
+                    <div class="desc">
+                        <div class="thumb">
+                            <img class="img-circle" src="assets/img/ui-sam.jpg" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                            <p><a href="#">Marcel Newman</a><br/>
+                                <muted>Available</muted>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- CALENDAR-->
+                    <div id="calendar" class="mb">
+                        <div class="panel green-panel no-margin">
+                            <div class="panel-body">
+                                <div id="date-popover" class="popover top" style="cursor: pointer; disadding: block; margin-left: 33%; margin-top: -50px; width: 175px;">
+                                    <div class="arrow"></div>
+                                    <h3 class="popover-title" style="disadding: none;"></h3>
+                                    <div id="date-popover-content" class="popover-content"></div>
+                                </div>
+                                <div id="my-calendar"></div>
+                            </div>
+                        </div>
+                    </div><!-- / calendar -->
+
+                </div><!-- /col-lg-3 -->
+            </div><! --/row -->
+
+        </section>
+
+    </section>
+
+
+
+
+
+    <footer class="site-footer">
+        <div class="text-center">
+            <ul><li>Jodie Gardiner</li></ul>
+        </div>
+    </footer>
+</section>
 
 
 {#      <form class="form-signin">#}
@@ -71,10 +322,6 @@
 {#      </form>#}
 
 
-
-
-
-
 {#<script>#}
 {#    function onSignIn(googleUser) {#}
 {#        var profile = googleUser.getBasicProfile();#}
@@ -84,5 +331,49 @@
 {#        console.log('Email: ' + profile.getEmail());#}
 {#    }#}
 {#</script>#}
+
+<script src="{% static "js/jquery-1.8.3.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
+<script class="include" type="text/javascript" src="{% static "js/jquery.dcjqaccordion.2.7.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery.scrollTo.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery.nicescroll.js" %}"></script>
+<script type="text/javascript" src="{% static "js/common-scripts.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery.gritter.js" %}"></script>
+<script type="text/javascript" src="{% static "js/gritter-conf.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery-ui.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/bootstrap-inputmask.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/bootstrap-switch.js" %}"></script>
+<script type="text/javascript" src="{% static "js/calendar-conf-events.js" %}"></script>
+
+<script type="text/javascript" src="{% static "js/chartjs-conf.js" %}"></script>
+<script type="text/javascript" src="{% static "js/easy-pie-chart.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery.easy-pie-chart.js" %}"></script>
+<script type="text/javascript" src="{% static "js/form-component.js" %}"></script>
+<script type="text/javascript" src="{% static "js/fullcalendar.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery.backstretch.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery.fancybox.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery.js" %}"></script>
+<script type="text/javascript" src="{% static "js/sparkline-chart.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery.tagsinput.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery.ui.touch-punch.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery-ui-1.9.2.custom.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/morris-conf.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery.sparkline.js" %}"></script>
+<script type="text/javascript" src="{% static "js/tasks.js" %}"></script>
+<script type="text/javascript" src="{% static "js/zabuto_calendar.js" %}"></script>
+
+
+
+<script>
+    //custom select box
+
+    $(function(){
+        $('select.styled').customSelect();
+    });
+
+</script>
+
+
+
 </body>
 </html>
