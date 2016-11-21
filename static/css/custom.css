@@ -22,3 +22,11 @@
   padding-left: 15px;
   padding-right: 15px;
 }
+
+.client-block {
+  height: 225px;
+}
+
+.btn-margin {
+  margin-bottom: 10px;
+}

@@ -21,7 +21,6 @@ class ClientCreationForm(forms.ModelForm):
         attrs={'class': "form-control date_picker", 'id': "due_date", 'name': "due_date",}, format="YYYY-MM-DD")
     )
 
-
     class Meta:
         model = Client
         fields = ['name', 'address', 'email', 'phone', 'notes', 'purchased_plan', 'due_date']

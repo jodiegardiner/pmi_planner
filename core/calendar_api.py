@@ -6,6 +6,7 @@ from apiclient import discovery
 from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
+from .models import Client, Pregnancy
 
 import datetime
 
@@ -47,6 +48,11 @@ def get_credentials():
             credentials = tools.run(flow, store)
         print('Storing credentials to ' + credential_path)
     return credentials
+
+
+def create_calendar_entries(entries):
+    for entry in entries:
+        create_calendar_entry(entry)
 
 
 def create_calendar_entry(entry):
