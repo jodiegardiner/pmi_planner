@@ -1,10 +1,10 @@
 import datetime
-from django.utils import timezone
 import datedelta
 
 
 def date_to_string(d):
     return datetime.datetime.strftime(d, "%Y-%m-%d")
+
 
 def generate_duedate_event(preg, client):
     return {'name': "" + client.name + " - Due date",
@@ -16,7 +16,6 @@ def generate_duedate_event(preg, client):
 
 def generate_scan_event(preg, client):
     modifiedDate = preg.due_date + datedelta.datedelta(days=10)
-
 
     return {'name': "" + client.name + " - Arrange scan",
             'address': client.address,
@@ -31,7 +30,7 @@ def generate_fortytwo_event(preg, client):
     return {'name': "" + client.name + " - 42 weeks",
             'address': client.address,
             'notes': client.notes,
-             'due_date': date_to_string(modifiedDate),
+            'due_date': date_to_string(modifiedDate),
             }
 
 
@@ -50,7 +49,7 @@ def generate_package_event(preg, client):
     days = weeks * 7
     modifiedDate = preg.due_date - datedelta.datedelta(days=days)
 
-    return {'name': "" + client.name + " - Package starts",
+    return {'name': "" + client.name + " - Care commences",
             'address': client.address,
             'notes': client.notes,
             'due_date': date_to_string(modifiedDate),
@@ -58,13 +57,11 @@ def generate_package_event(preg, client):
 
 
 def generate_initial_appt_event(preg, client):
-
-    """ Call generate_package_event?  How to extract event_date from that? """
     weeks = 40 - preg.week_care_commences
     days = (weeks * 7) + 14
     modifiedDate = preg.due_date - datedelta.datedelta(days=days)
 
-    return {'name': "" + client.name + " - Arrange initial appt",
+    return {'name': "" + client.name + " - Arrange initial appt.",
             'address': client.address,
             'notes': client.notes,
             'due_date': date_to_string(modifiedDate),

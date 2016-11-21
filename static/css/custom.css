@@ -6,7 +6,7 @@
   background-color: #8BCDCB;
 }
 
-.btn-pmi:hover {
+.btn-pmi:hover, .btn-pmi:active {
   background-color: #604999;
 }
 
@@ -25,8 +25,28 @@
 
 .client-block {
   height: 225px;
+  color: #797979;
+  padding: 10px;
 }
 
 .btn-margin {
   margin-bottom: 10px;
+}
+
+.white-panel {
+  text-align: left;
+}
+
+.white-panel p {
+  font-weight: 500;
+  margin-left: 0px;
+}
+
+.base {
+  vertical-align: baseline;
+}
+
+hr {
+  margin-top:3px;
+  margin-bottom: 3px;
 }

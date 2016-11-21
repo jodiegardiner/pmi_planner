@@ -18,13 +18,13 @@ class ClientCreationForm(forms.ModelForm):
     # notes = forms.CharField(widget=forms.Textarea(attrs={'rows': 4}), required=False)
 
     due_date = forms.DateField(widget=forms.widgets.DateInput(
-        attrs={'class': "form-control date_picker", 'id': "due_date", 'name': "due_date",}, format="YYYY-MM-DD")
+        attrs={'class': "date_picker", 'id': "due_date", 'name': "due_date",}, format="YYYY-MM-DD")
     )
 
     class Meta:
         model = Client
         fields = ['name', 'address', 'email', 'phone', 'notes', 'purchased_plan', 'due_date']
-        widgets = {'due_date': forms.DateInput(attrs= {'class': 'date_picker'}, format="YYYY-MM-DD")}
+        # widgets = {'due_date': forms.DateInput(attrs= {'class': 'date_picker'}, format="YYYY-MM-DD")}
 
     def save(self, commit=True):
         instance = super(ClientCreationForm, self).save(commit=False)

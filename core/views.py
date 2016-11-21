@@ -25,6 +25,7 @@ from event_package import generate_events
 def get_index(request):
     return render(request, 'index.html')
 
+
 @login_required(login_url='/login/')
 def create_client(request):
     if request.method == 'POST':
