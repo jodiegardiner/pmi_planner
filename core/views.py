@@ -14,6 +14,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages, auth
 import json
 import datetime
+from datetime import date
+import datedelta
 
 # Create your views here.
 
@@ -36,10 +38,10 @@ def create_client(request):
 
             e = {'name': client.name,
                  'address': client.address,
-                 'notes' : client.notes,
-                 'email' : client.email,
+                 'notes': client.notes,
+                 'email': client.email,
                  'phone': client.phone,
-                 'due_date': preg.due_date,
+                 'due_date': preg.due_date - datedelta.datedelta(days=5),
                  }
             create_calendar_entry(e)
 
@@ -55,7 +57,7 @@ def client_list(request):
     clients = Client.objects.filter()
     return render(request, "client_list.html", {'clients': clients})
 
-
+@login_required(login_url='/login/')
 def client_details(request, id):
     client = get_object_or_404(Client, pk=id)
     return render(request, "client_detail.html", {'client': client})

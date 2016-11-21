@@ -3,7 +3,7 @@
 {% block content %}
     <div class="col-md-offset-4 col-md-4 ">
         <form role="form" method="post" action="{% url 'login' %}">
-            <legend>Midwive Login</legend>
+            <legend>Midwife Login</legend>
             {% csrf_token %}
             {{ form | as_bootstrap }}
             <div class="form-group">
