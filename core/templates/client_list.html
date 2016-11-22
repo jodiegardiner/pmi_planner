@@ -18,7 +18,7 @@
                     <p>{{ preg.due_date }}</p>
                     <p>{{ client.address }}</p>
                     <p class="text-muted">{{ client.notes|truncatewords:15 }}</p>
-                    <p class="pull-right base"><button class="btn btn-default btn-pmi" onclick="location.href={{ client.id }}">View</button></p>
+                    <p class="pull-right base"><button class="btn btn-default btn-pmi" onclick="location.href= {{ client.id }}">View</button></p>
                 </div>
             </div>
 

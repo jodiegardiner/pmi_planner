@@ -1,28 +1,21 @@
 {% extends "base.html" %}
-
 {% block content %}
 
     <div class="row">
-
-
-
         <div class="col-md-3 col-sm-3">
             <p>{{ client.name }}</p>
         </div>
-
         <div class="col-md-6 col-sm-6">
-
             <p>{{ client.notes }}</p>
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-3 col-sm-3">
             <p><button class="btn btn-default" onclick="location.href='/client'">Back to Clients</button>
                 {#                        <button class="btn btn-default" onclick="location.href='edit'">Edit</button>#}
             </p>
-
-            {#                        <p>{{ post.published_date }} | <strong>Views</strong> {{ post.views }} | <strong>Tag</strong> {{ post.tag }}</p>#}
         </div>
-
-
     </div>
 
+    </div>
 {% endblock content %}
