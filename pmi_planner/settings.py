@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'core',
     'django_forms_bootstrap',
     'accounts',
+    'tinymce',
+    'emoticons',
+    'threads',
+
 ]
 
 MIDDLEWARE = [
@@ -126,7 +130,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = ''
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
+# tinymce settings
+TINYMCE_JS_ROOT = os.path.join(BASE_DIR, "static", 'js', 'tinymce', 'tinymce.min.js')

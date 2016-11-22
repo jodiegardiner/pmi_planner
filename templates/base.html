@@ -18,11 +18,8 @@
     <link rel="stylesheet" href="{% static "css/to-do.css" %}">
     <link rel="stylesheet" href="{% static "css/font-awesome.css" %}">
     <link rel="stylesheet" href="{% static "css/table-responsive.css" %}">
-    <link rel="stylesheet" href="{% static "css/zabuto_calendar.css" %}">
     <link rel="stylesheet" href="{% static "css/jquery.fancybox.css" %}">
-    <link rel="stylesheet" href="{% static "css/jquery.easy-pie-chart.css" %}">
     <link rel="stylesheet" href="{% static "css/bootstrap-fullcalendar.css" %}">
-
     <link rel="stylesheet" href="{% static "css/datepicker.css" %}">
     <link rel="stylesheet" href="{% static "css/style.css" %}">
     <link rel="stylesheet" href="{% static "css/style-responsive.css" %}">
@@ -34,7 +31,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-{#    <script type="text/javascript" src="{% static "js/jquery.js" %}"></script>#}
+    {#    <script type="text/javascript" src="{% static "js/jquery.js" %}"></script>#}
     <script type="text/javascript" src="{% static "js/jquery-1.8.3.min.js" %}"></script>
 
 
@@ -88,7 +85,6 @@
                 {% else %}
                     <p class="centered"><a class="logout" href="{% url 'login' %}">Log In</a></p>{% endif %}
 
-
                 <li class="mt">
                     <a class="active" href="/">
                         <i class="fa fa-dashboard"></i>
@@ -97,36 +93,32 @@
                 </li>
 
                 <li class="sub-menu">
-                    <a href="{% url 'clients' %}" >
+                    <a href="javascript:;" >
                         <i class="fa fa-th"></i>
-                        <span>Client List</span>
+                        <span>Client Management</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a  href="{% url 'clients' %}" >Client list</a></li>
+                        <li><a  href="{% url 'create' %}">Add client</a></li>
+                    </ul>
+                </li>
+            <li class="sub-menu">
+                    <a href="{% url 'forum' %}" >
+                        <i class="fa fa-th"></i>
+                        <span>Forum</span>
                     </a>
                 </li>
 
                 <li class="sub-menu">
-                    <a href="{% url 'create' %}" >
-                        <i class="fa fa-user"></i>
-                        <span>Add a Client</span>
-                    </a>
-                </li>
-                <li class="sub-menu">
-                    <a href="http://www.privatemidwives.com/midwives-log-in-page/" target="_blank" >
+                    <a href="javascript:;" >
                         <i class="fa fa-book"></i>
                         <span>Documentation</span>
                     </a>
+                    <ul class="sub">
+                        <li><a  href="http://www.privatemidwives.com/midwives-log-in-page/" target="_blank" >PM web portal</a></li>
+                        <li><a  href="http://www.privatemidwives.com/roi-packages-and-prices/" target="_blank">PM pricing</a></li>
+                    </ul>
                 </li>
-
-                <li class="sub-menu">
-                    <a href="http://www.privatemidwives.com/roi-packages-and-prices/" target="_blank">
-                        <i class=" fa fa-info-circle"></i>
-                        <span>Packages</span>
-                    </a>
-                    {#                    <ul class="sub">#}
-                    {#                        <li><a  href="morris.html">Morris</a></li>#}
-                    {#                        <li><a  href="chartjs.html">Chartjs</a></li>#}
-                    {#                    </ul>#}
-                </li>
-
             </ul>
             <!-- sidebar menu end-->
         </div>
@@ -160,16 +152,15 @@
                     <h3>NOTIFICATIONS</h3>
 
                     <!-- First Action -->
-                    <div class="desc">
-                        <div class="thumb">
-                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                    {% if messages %}
+                        <div class="alert alert-success">
+                            <div class="messages">
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            </div>
                         </div>
-                        <div class="details">
-                            <p><muted>2 Minutes Ago</muted><br/>
-                                <a href="#">James Brown</a> subscribed to your newsletter.<br/>
-                            </p>
-                        </div>
-                    </div>
+                    {% endif %}
                     <!-- Second Action -->
                     <div class="desc">
                         <div class="thumb">
@@ -315,9 +306,7 @@
 <script type="text/javascript" src="{% static "js/jquery.nicescroll.js" %}"></script>
 <script type="text/javascript" src="{% static "js/jquery.sparkline.js" %}"></script>
 <script type="text/javascript" src="{% static "js/common-scripts.js" %}"></script>
-
 <script type="text/javascript" src="{% static "js/jquery-ui.min.js" %}"></script>
-{#<script type="text/javascript" src="{% static "js/jquery-ui-1.9.2.custom.min.js" %}"></script>#}
 <script type="text/javascript" src="{% static "js/bootstrap-inputmask.min.js" %}"></script>
 <script type="text/javascript" src="{% static "js/bootstrap-switch.js" %}"></script>
 <script type="text/javascript" src="{% static "js/fullcalendar.min.js" %}"></script>
@@ -326,11 +315,7 @@
 <script type="text/javascript" src="{% static "js/sparkline-chart.js" %}"></script>
 <script type="text/javascript" src="{% static "js/jquery.tagsinput.js" %}"></script>
 <script type="text/javascript" src="{% static "js/jquery.ui.touch-punch.min.js" %}"></script>
-
 <script type="text/javascript" src="{% static "js/tasks.js" %}"></script>
-
-
-
 
 </body>
 </html>

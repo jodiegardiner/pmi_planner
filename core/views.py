@@ -32,16 +32,12 @@ def create_client(request):
         form = ClientCreationForm(request.POST)
         if form.is_valid():
             client = form.save()
-
             due_date = datetime.datetime.strptime(request.POST.get('due_date', timezone.now()), "%Y-%m-%d")
-
-
             preg = Pregnancy()
             preg.client = client
             preg.due_date = due_date
             preg.week_care_commences = int(request.POST.get('purchased_plan'))
             preg.save()
-
             events = generate_events(preg, client)
             create_calendar_entries(events)
 
