@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 
+    <p>
+        <button class="btn btn-default" onclick="location.href='/client'">Back to Clients</button>
+    </p>
     <div class="row">
         <div class="col-md-3 col-sm-3">
             <p>{{ client.name }}</p>
@@ -11,11 +14,12 @@
     </div>
     <div class="row">
         <div class="col-md-3 col-sm-3">
-            <p><button class="btn btn-default" onclick="location.href='/client'">Back to Clients</button>
-                {#                        <button class="btn btn-default" onclick="location.href='edit'">Edit</button>#}
+
+            {#                        <button class="btn btn-default" onclick="location.href='edit'">Edit</button>#}
+            <p>
+                <button class="btn btn-default" onclick="location.href='/client'">Back to Clients</button>
             </p>
         </div>
     </div>
 
-    </div>
 {% endblock content %}
