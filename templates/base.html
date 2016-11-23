@@ -35,7 +35,7 @@
     {#    <script type="text/javascript" src="{% static "js/jquery.js" %}"></script>#}
     <script type="text/javascript" src="{% static "js/jquery-1.8.3.min.js" %}"></script>
 
-    {#    {% block head_js %}{% endblock head_js %}#}
+        {% block head_js %}{% endblock head_js %}
 
 
 </head>
@@ -160,7 +160,7 @@
                         <div class="alert alert-success">
                             <div class="messages">
                                 {% for message in messages %}
-                                    {{ message }}
+                                   <p> {{ message|safe }} </p>
                                 {% endfor %}
                             </div>
                         </div>
@@ -214,64 +214,6 @@
                                 <muted>18 Hours Ago</muted>
                                 <br/>
                                 <a href="#">Daniel Pratt</a> purchased a wallet in your store.<br/>
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- USERS ONLINE SECTION -->
-                    <h3>TEAM MEMBERS</h3>
-                    <!-- First Member -->
-                    <div class="desc">
-                        <div class="thumb">
-                            <img class="img-circle" src="#" width="35px" height="35px" align="">
-                        </div>
-                        <div class="details">
-                            <p><a href="#">DIVYA MANIAN</a><br/>
-                                <muted>Available</muted>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Second Member -->
-                    <div class="desc">
-                        <div class="thumb">
-                            <img class="img-circle" src="#" width="35px" height="35px" align="">
-                        </div>
-                        <div class="details">
-                            <p><a href="#">DJ SHERMAN</a><br/>
-                                <muted>I am Busy</muted>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Third Member -->
-                    <div class="desc">
-                        <div class="thumb">
-                            <img class="img-circle" src="#" width="35px" height="35px" align="">
-                        </div>
-                        <div class="details">
-                            <p><a href="#">DAN ROGERS</a><br/>
-                                <muted>Available</muted>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Fourth Member -->
-                    <div class="desc">
-                        <div class="thumb">
-                            <img class="img-circle" src="#" width="35px" height="35px" align="">
-                        </div>
-                        <div class="details">
-                            <p><a href="#">Zac Sniders</a><br/>
-                                <muted>Available</muted>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Fifth Member -->
-                    <div class="desc">
-                        <div class="thumb">
-                            <img class="img-circle" src="#" width="35px" height="35px" align="">
-                        </div>
-                        <div class="details">
-                            <p><a href="#">Marcel Newman</a><br/>
-                                <muted>Available</muted>
                             </p>
                         </div>
                     </div>

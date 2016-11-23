@@ -39,7 +39,10 @@ def create_client(request):
             preg.week_care_commences = int(request.POST.get('purchased_plan'))
             preg.save()
             events = generate_events(preg, client)
-            create_calendar_entries(events)
+            responses = create_calendar_entries(events)
+            messages.success(request, "Client created successfully")
+            for response in responses:
+                messages.success(request, "<a href=" + response["url"] + "><p>Google Calendar event created - " + response["name"] + "</p></a>")
 
             return redirect(client_details, client.pk)
     else:
@@ -59,6 +62,7 @@ def client_list(request):
 @login_required(login_url='/login/')
 def client_details(request, id):
     client = get_object_or_404(Client, pk=id)
-    return render(request, "client_detail.html", {'client': client})
+    pregs = Pregnancy.objects.filter(client=client.id)
+    return render(request, "client_detail.html", {'client': client, 'pregs': pregs})
 
 

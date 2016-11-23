@@ -21,6 +21,7 @@ class Pregnancy(models.Model):
     client = models.ForeignKey(Client, related_name="pregnancies")
     due_date = models.DateField()
     week_care_commences = models.IntegerField()
+    notes = models.TextField(blank=True)
 
     def __str__(self):
         return self.client.name

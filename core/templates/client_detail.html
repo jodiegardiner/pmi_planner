@@ -2,14 +2,52 @@
 {% block content %}
 
     <p>
-        <button class="btn btn-default" onclick="location.href='/client'">Back to Clients</button>
+        <button class="btn btn-primary btn-pmi" onclick="location.href='/client'">Back to Clients</button>
+        <button class="btn btn-primary btn-pmi" onclick="location.href='/client'">Edit details</button>
     </p>
     <div class="row">
-        <div class="col-md-3 col-sm-3">
-            <p>{{ client.name }}</p>
+        <div class="col-md-4 col-sm-4 mb">
+            <div class="white-panel showback pn">
+                <h3>{{ client.name }}</h3>
+                <hr>
+                <p class="text-muted">{{ client.address }}</p>
+                <p class="text-muted">{{ client.email }}</p>
+                <p class="text-muted">{{ client.phone }}</p>
+
+            </div>
         </div>
-        <div class="col-md-6 col-sm-6">
-            <p>{{ client.notes }}</p>
+        <div class="col-md-8 col-sm-8 mb">
+            <div class="white-panel showback pn">
+                <h3>Notes</h3>
+                <hr>
+                <p class="text-muted">{{ client.notes }}</p>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col-md-8 col-sm-8 mb">
+            <div class="white-panel showback pn">
+                <h3>Pregnancy</h3>
+                <hr>
+                {% for preg in pregs %}
+                    <p class="text-muted">{{ preg.notes }}</p>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <div class="col-md-4 col-sm-4 mb">
+            <div class="white-panel showback pn">
+                <h3>Due Date</h3>
+                <hr>
+                {% for preg in pregs %}
+                    <p class="text-muted">{{ preg.due_date }}</p>
+                {% endfor %}
+
+            </div>
         </div>
     </div>
     <div class="row">
@@ -17,7 +55,8 @@
 
             {#                        <button class="btn btn-default" onclick="location.href='edit'">Edit</button>#}
             <p>
-                <button class="btn btn-default" onclick="location.href='/client'">Back to Clients</button>
+                <button class="btn btn-primary btn-pmi" onclick="location.href='/client'">Back to Clients</button>
+
             </p>
         </div>
     </div>

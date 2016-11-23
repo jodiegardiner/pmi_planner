@@ -1,6 +1,8 @@
 from __future__ import print_function
 import httplib2
 import os
+from django.contrib import messages
+from django.shortcuts import render
 
 from apiclient import discovery
 from oauth2client import client
@@ -51,8 +53,10 @@ def get_credentials():
 
 
 def create_calendar_entries(entries):
+    responses = []
     for entry in entries:
-        create_calendar_entry(entry)
+        responses.append(create_calendar_entry(entry))
+    return responses
 
 
 def create_calendar_entry(entry):
@@ -81,7 +85,13 @@ def create_calendar_entry(entry):
             'anyoneCanAddSelf': False,
         }
         event = service.events().insert(calendarId='primary', body=event).execute()
-        print('Event created: %s' % (event.get('htmlLink')))
+        event_url = event.get('htmlLink')
+        event_summary = event.get('summary')
+        response = {"url": event_url, "name": event_summary}
+
+        return response
+
+
 
     # now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
     # print('Getting the upcoming 10 events')
