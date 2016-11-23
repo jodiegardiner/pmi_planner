@@ -50,3 +50,10 @@ hr {
   margin-top:3px;
   margin-bottom: 3px;
 }
+
+.client-header {
+  color: #ffffff;
+  background-color: #604999;
+  font-size: large;
+  padding: 5px;
+}

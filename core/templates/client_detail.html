@@ -1,4 +1,8 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+{% block head_js %}
+
+{% endblock %}
 {% block content %}
 
     <p>
@@ -6,13 +10,20 @@
         <button class="btn btn-primary btn-pmi" onclick="location.href='/client'">Edit details</button>
     </p>
     <div class="row">
+        <div class="col-md-12">
+            <div class="client-header">
+                <span>Client detail</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-4 col-sm-4 mb">
             <div class="white-panel showback pn">
                 <h3>{{ client.name }}</h3>
                 <hr>
-                <p class="text-muted">{{ client.address }}</p>
-                <p class="text-muted">{{ client.email }}</p>
-                <p class="text-muted">{{ client.phone }}</p>
+                <a href="#" id="address" data-type="text" data-pk="{{ client.id }}" data-url="/create/" data-title="test"><i class="fa fa-map-marker"></i>{{ client.address }}</a>
+                <p class="text-muted"><i class="fa fa-envelope"></i>{{ client.email }}</p>
+                <p class="text-muted"><i class="fa fa-phone"></i>{{ client.phone }}</p>
 
             </div>
         </div>
@@ -27,29 +38,36 @@
 
     </div>
     <div class="row">
-
-        <div class="col-md-8 col-sm-8 mb">
-            <div class="white-panel showback pn">
-                <h3>Pregnancy</h3>
-                <hr>
-                {% for preg in pregs %}
-                    <p class="text-muted">{{ preg.notes }}</p>
-                {% endfor %}
-            </div>
-        </div>
-
-
-        <div class="col-md-4 col-sm-4 mb">
-            <div class="white-panel showback pn">
-                <h3>Due Date</h3>
-                <hr>
-                {% for preg in pregs %}
-                    <p class="text-muted">{{ preg.due_date }}</p>
-                {% endfor %}
-
+        <div class="col-md-12">
+            <div class="client-header">
+                <span>Pregnancies</span>
             </div>
         </div>
     </div>
+    {% for preg in pregs %}
+        <div class="row">
+
+            <div class="col-md-8 col-sm-8 mb">
+                <div class="white-panel showback pn">
+                    <h3>Notes</h3>
+                    <hr>
+
+                    <p class="text-muted">{{ preg.notes }}</p>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-4 col-sm-4 mb">
+                <div class="white-panel showback pn">
+                    <h3>Due Date</h3>
+                    <hr>
+
+                    <p class="text-muted">{{ preg.due_date }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
     <div class="row">
         <div class="col-md-3 col-sm-3">
 
