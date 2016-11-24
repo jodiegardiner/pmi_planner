@@ -8,7 +8,7 @@
             $('#email').editable();
             $('#phone').editable();
             $('#c_notes').editable();
-            $('#p_notes').editable();
+            $('.editable').editable();
             $('#p_due_date').editable();
             $.fn.editable.defaults.mode = 'inline';
         });
@@ -62,7 +62,7 @@
                     <h3>Notes</h3>
                     <hr>
 
-                    <p class="text-muted"><a href="#" id="p_notes" data-type="textarea" data-pk="{{ preg.id }}" data-url="/update_p_notes/" data-title="Update notes" data-params="{csrfmiddlewaretoken:'{{csrf_token}}'}">{{ preg.notes }}</a></p>
+                    <p class="text-muted"><a class="editable" href="#" data-type="textarea" data-pk="{{ preg.id }}" data-url="/update_p_notes/" data-title="Update notes" data-params="{csrfmiddlewaretoken:'{{csrf_token}}'}">{{ preg.notes }}</a></p>
 
                 </div>
             </div>
@@ -73,9 +73,10 @@
                     <h3>Due Date</h3>
                     <hr>
 
-                    <p class="text-muted"><a href="#" id="p_due_date" data-type="date" data-pk="{{ preg.id }}" data-url="/update_due_date/" data-title="Update due date" data-params="{csrfmiddlewaretoken:'{{csrf_token}}'}">{{ preg.due_date }}</a></p>
+                    <p class="text-muted"><a class="editable" href="#" id="p_due_date" data-type="date" data-pk="{{ preg.id }}" data-url="/update_due_date/" data-title="Update due date" data-params="{csrfmiddlewaretoken:'{{csrf_token}}'}">{{ preg.due_date }}</a></p>
                 </div>
             </div>
+            <hr>
         </div>
     {% endfor %}
     <div class="row">

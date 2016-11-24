@@ -11,7 +11,7 @@ class Client(models.Model):
     address = models.CharField(max_length=200, blank=True)
     email = models.EmailField(blank=True)
     phone = models.CharField(max_length=15, blank=True)
-    notes = models.TextField(blank=True)
+    notes = models.TextField(default="Enter notes")
 
     def __str__(self):
         return self.name
@@ -21,7 +21,7 @@ class Pregnancy(models.Model):
     client = models.ForeignKey(Client, related_name="pregnancies")
     due_date = models.DateField()
     week_care_commences = models.IntegerField()
-    notes = models.TextField(blank=True)
+    notes = models.TextField(default="Enter notes")
 
     def __str__(self):
         return self.client.name
