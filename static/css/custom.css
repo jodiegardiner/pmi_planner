@@ -24,7 +24,7 @@
 }
 
 .client-block {
-  height: 225px;
+  min-height: 225px;
   color: #797979;
   padding: 10px;
 }
@@ -64,4 +64,8 @@ hr {
 
 a {
   color: #777
+}
+
+.pn {
+  min-height:250px;
 }

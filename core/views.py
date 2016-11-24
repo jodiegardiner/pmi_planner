@@ -116,3 +116,139 @@ def update_due_date(request):
     preg.due_date = request.POST.get('value')
     preg.save()
     return render(request, "client_detail.html")
+
+
+def update_dob(request):
+    id = request.POST.get('pk')
+    client = get_object_or_404(Client, pk=id)
+    client.dob = request.POST.get('value')
+    client.save()
+    return render(request, "client_detail.html")
+
+
+def update_height(request):
+    id = request.POST.get('pk')
+    client = get_object_or_404(Client, pk=id)
+    client.height = request.POST.get('value')
+    client.save()
+    return render(request, "client_detail.html")
+
+
+def update_weight(request):
+    id = request.POST.get('pk')
+    client = get_object_or_404(Client, pk=id)
+    client.weight = request.POST.get('value')
+    client.save()
+    return render(request, "client_detail.html")
+
+
+def update_bmi(request):
+    id = request.POST.get('pk')
+    client = get_object_or_404(Client, pk=id)
+    client.bmi = request.POST.get('value')
+    client.save()
+    return render(request, "client_detail.html")
+
+
+def update_bt(request):
+    id = request.POST.get('pk')
+    client = get_object_or_404(Client, pk=id)
+    client.blood_type = request.POST.get('value')
+    client.save()
+    return render(request, "client_detail.html")
+
+
+def update_haemo(request):
+    id = request.POST.get('pk')
+    client = get_object_or_404(Client, pk=id)
+    client.haemoglobin = request.POST.get('value')
+    client.save()
+    return render(request, "client_detail.html")
+
+
+def update_sero(request):
+    id = request.POST.get('pk')
+    client = get_object_or_404(Client, pk=id)
+    client.serology = request.POST.get('value')
+    client.save()
+    return render(request, "client_detail.html")
+
+
+def update_gp(request):
+    id = request.POST.get('pk')
+    client = get_object_or_404(Client, pk=id)
+    client.gp = request.POST.get('value')
+    client.save()
+    return render(request, "client_detail.html")
+
+
+def update_gp_tel(request):
+    id = request.POST.get('pk')
+    client = get_object_or_404(Client, pk=id)
+    client.gp_tel = request.POST.get('value')
+    client.save()
+    return render(request, "client_detail.html")
+
+
+def update_hosp(request):
+    id = request.POST.get('pk')
+    client = get_object_or_404(Client, pk=id)
+    client.hospital = request.POST.get('value')
+    client.save()
+    return render(request, "client_detail.html")
+
+
+def update_hosp_num(request):
+    id = request.POST.get('pk')
+    client = get_object_or_404(Client, pk=id)
+    client.hospital_num = request.POST.get('value')
+    client.save()
+    return render(request, "client_detail.html")
+
+
+def update_para(request):
+    id = request.POST.get('pk')
+    client = get_object_or_404(Client, pk=id)
+    client.parity = request.POST.get('value')
+    client.save()
+    return render(request, "client_detail.html")
+
+
+def update_prev_pregs(request):
+    id = request.POST.get('pk')
+    client = get_object_or_404(Client, pk=id)
+    client.prev_pregs = request.POST.get('value')
+    client.save()
+    return render(request, "client_detail.html")
+
+
+def update_wcc(request):
+    id = request.POST.get('pk')
+    preg = get_object_or_404(Pregnancy, pk=id)
+    preg.week_care_commences = request.POST.get('value')
+    preg.save()
+    return render(request, "client_detail.html")
+
+
+def update_p_site(request):
+    id = request.POST.get('pk')
+    preg = get_object_or_404(Pregnancy, pk=id)
+    preg.placental_site = request.POST.get('value')
+    preg.save()
+    return render(request, "client_detail.html")
+
+
+def update_cons(request):
+    id = request.POST.get('pk')
+    preg = get_object_or_404(Pregnancy, pk=id)
+    preg.consultant_clinic = request.POST.get('value')
+    preg.save()
+    return render(request, "client_detail.html")
+
+
+def update_phn(request):
+    id = request.POST.get('pk')
+    preg = get_object_or_404(Pregnancy, pk=id)
+    preg.public_health_nurse = request.POST.get('value')
+    preg.save()
+    return render(request, "client_detail.html")
