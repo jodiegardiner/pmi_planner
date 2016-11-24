@@ -66,3 +66,53 @@ def client_details(request, id):
     return render(request, "client_detail.html", {'client': client, 'pregs': pregs})
 
 
+def update_address(request):
+    id = request.POST.get('pk')
+    client = get_object_or_404(Client, pk=id)
+    client.address = request.POST.get('value')
+    client.save()
+    messages.success(request, "Successfully updated client address")
+    return render(request, "client_detail.html")
+
+
+def update_email(request):
+    id = request.POST.get('pk')
+    client = get_object_or_404(Client, pk=id)
+    client.email = request.POST.get('value')
+    client.save()
+    messages.success(request, "Successfully updated client email")
+    return render(request, "client_detail.html")
+
+
+def update_phone(request):
+    id = request.POST.get('pk')
+    client = get_object_or_404(Client, pk=id)
+    client.phone = request.POST.get('value')
+    client.save()
+    messages.success(request, "Successfully updated client phone number")
+    return render(request, "client_detail.html")
+
+
+def update_c_notes(request):
+    id = request.POST.get('pk')
+    client = get_object_or_404(Client, pk=id)
+    client.notes = request.POST.get('value')
+    client.save()
+    messages.success(request, "Successfully updated client notes")
+    return render(request, "client_detail.html")
+
+
+def update_p_notes(request):
+    id = request.POST.get('pk')
+    preg = get_object_or_404(Pregnancy, pk=id)
+    preg.notes = request.POST.get('value')
+    preg.save()
+    return render(request, "client_detail.html")
+
+
+def update_due_date(request):
+    id = request.POST.get('pk')
+    preg = get_object_or_404(Pregnancy, pk=id)
+    preg.due_date = request.POST.get('value')
+    preg.save()
+    return render(request, "client_detail.html")

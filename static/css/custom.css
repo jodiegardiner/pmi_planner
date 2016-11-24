@@ -57,3 +57,11 @@ hr {
   font-size: large;
   padding: 5px;
 }
+
+.editable-click, a.editable-click {
+  border-bottom: none;
+}
+
+a {
+  color: #777
+}
