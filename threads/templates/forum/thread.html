@@ -5,8 +5,10 @@
 
 
 
-    <div class="">
-        <h2>{{ thread.name }}</h2>
+    <div class="col-md-12">
+        <h2 class="subject-name">{{ thread.name }}</h2>
+      </div>
+
         <div class="col-md-12">
             <table class="table">
                 <tbody>
@@ -27,17 +29,22 @@
                 </tbody>
             </table>
         </div>
-        <hr>
+
         {% if user.is_authenticated %}
             <p>
                 <a href="{% url 'new_post' thread.id %}" class="btn btn-primary btn-pmi">Reply</a>
             </p>
         {% endif %}
-    </div>
+
 
     <div class="container">
         {% for post in thread.posts.all %}
             {% include "forum/post.html" %}
         {% endfor %}
     </div>
+     {% if user.is_authenticated %}
+            <p>
+                <a href="{% url 'new_post' thread.id %}" class="btn btn-primary btn-pmi">Reply</a>
+            </p>
+        {% endif %}
 {% endblock %}

@@ -36,7 +36,7 @@ def new_thread(request, subject_id):
             post.thread = thread
             post.save()
 
-            messages.success(request, "Your have created a new thread!")
+            messages.success(request, "You have created a new thread.")
 
             return redirect(reverse('thread', args={thread.pk}))
     else:
@@ -72,7 +72,7 @@ def new_post(request, thread_id):
             post.user = request.user
             post.save()
 
-            messages.success(request, "Your post has been added to the thread!")
+            messages.success(request, "Your post has been added to the thread.")
 
             return redirect(reverse('thread', args={thread.pk}))
     else:
@@ -119,6 +119,6 @@ def delete_post(request, post_id):
     thread_id = post.thread.id
     post.delete()
 
-    messages.success(request, "Your post was deleted!")
+    messages.success(request, "Your post was deleted.")
 
     return redirect(reverse('thread', args={thread_id}))
